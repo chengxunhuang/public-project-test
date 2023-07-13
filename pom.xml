@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>com.project.test</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>public-project-test</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>project-test-api</module>
+        <module>project-test-server</module>
+        <module>project-test-server-starter</module>
+    </modules>
+    <properties>
+        <project.version>1.0.0-SNAPSHOT</project.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <fastjson.version>1.2.83</fastjson.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot-version>2.4.8</spring-boot-version>
+        <lombok-version>1.18.20</lombok-version>
+        <guava-version>30.1.1-jre</guava-version>
+        <hutool-all-version>5.6.6</hutool-all-version>
+        <mybatis.plus.starter.version>3.4.2</mybatis.plus.starter.version>
+        <jackson.version>2.11.0</jackson.version>
+        <joda.time.version>2.9.9</joda.time.version>
+        <commons-codec.version>1.6</commons-codec.version>
+        <rocketmq.version>2.1.0</rocketmq.version>
+        <gson.version>2.8.6</gson.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <alibaba.nacos.version>1.4.2</alibaba.nacos.version>
+        <easyexcel.version>3.1.1</easyexcel.version>
+        <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloud 微服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringCloud Alibaba 微服务 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Alibaba Nacos 配置 -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${alibaba.nacos.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.starter.version}</version>
+            </dependency>
+
+            <!--EasyExcel相关依赖-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all-version}</version>
+        </dependency>
+        <!-- logback 推送日志文件到logstash -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- 中央仓-->
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>jjyyx</id>-->
+<!--            <name>jjy release repository</name>-->
+<!--            <url>http://nexus.jjyyx.com/repository/maven-releases/</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>jjyyx</id>-->
+<!--            <name>jjy snapshot repository</name>-->
+<!--            <url>http://nexus.jjyyx.com/repository/maven-snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
+
+
+</project>

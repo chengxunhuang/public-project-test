@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>public-project-test</artifactId>
+        <groupId>com.project.test</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>project-test-server-starter</artifactId>
+
+    <properties>
+        <docker.repostory>harbor-pro.jiajiayue.com</docker.repostory>
+        <docker.registry.name>payment</docker.registry.name>
+    </properties>
+
+    <dependencies>
+        <!-- 必须加上server的依赖，不然启动的时候就会没有加载 springboot-web 导致启动卡主 -->
+        <dependency>
+            <groupId>com.project.test</groupId>
+            <artifactId>project-test-server</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- SpringCloud Alibaba Nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- SpringCloud Alibaba Nacos Config -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-version}</version>
+                <configuration>
+                    <fork>true</fork>
+                    <classifier>exec</classifier>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <!-- docker.registry.name对应harbor的目录，harbor中一定要有这个项目，不然打包会失败 -->
+                    <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                    </imageName>
+                    <!-- 指定Dockerfile所在的路径  -->
+                    <dockerDirectory>${project.basedir}</dockerDirectory>
+                    <!-- <dockerHost>https://harbor.jiajiayue.com/pay/</dockerHost> -->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}-${project.version}-exec.jar</include>
+                        </resource>
+                    </resources>
+                    <serverId>docker-harbor</serverId>
+                    <registryUrl>${docker.repostory}</registryUrl>
+                    <pushImage>true</pushImage>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

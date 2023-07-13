@@ -1,0 +1,30 @@
+server:
+  port: 9001
+spring:
+  application:
+    # 应用名称
+    # nacos 根据 cloud.nacos.config: 会拼接 project-test-dev.yml ; 所以必须在nacos中取名这个
+    name: project-test
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:127.0.0.1}:${NACOS_PORT:8848}
+        group: project
+        namespace: ${spring.profiles.active}
+      config:
+        # 配置中心地址
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.profiles.active}
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+#        shared-configs:
+#          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#            group: payment
+        group: project
+#logging:
+#  level:
+#    com.project: debug
