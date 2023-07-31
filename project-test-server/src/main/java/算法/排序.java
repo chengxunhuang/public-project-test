@@ -7,16 +7,16 @@ package 算法;
  */
 public class 排序 {
     public static void main(String[] args) {
-        //int[] a = {2, 1, 9, 3, 5, 0};
-        int[] a = {3,6,9,2,4,8};
+        // int[] a = {2, 1, 9, 3, 5, 0};
+        int[] a = {3, 6, 9, 2, 4, 8};
         // 冒泡排序
         // bubbleSolt(a, 6);
         // 插入排序
-        // insertSort(a, 6);
+        insertSort(a, 6);
         // 选择排序
         // selectSort(a, 6);
-        //mergeSort(a, 0, a.length - 1);
-        quickSort(a, 0, a.length - 1);
+        // mergeSort(a, 0, a.length - 1);
+        // quickSort(a, 0, a.length - 1);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
@@ -88,14 +88,14 @@ public class 排序 {
         int mid = (m + n) / 2;
         mergeSort(value, m, mid);
         mergeSort(value, mid + 1, n);
-        //将两个子排序合并到一起 用临时数组
+        // 将两个子排序合并到一起 用临时数组
         merge(value, m, mid, n);
     }
 
     public static void merge(int[] nums, int start, int mid, int end) {
         int[] temp = new int[end - start + 1];
-        int i = start; //左部分首元素
-        int j = mid + 1; //右部分首元素
+        int i = start; // 左部分首元素
+        int j = mid + 1; // 右部分首元素
         int k = 0;
         while (i <= mid && j <= end) { // 左指针 与 右指针 不能越界
             if (nums[i] < nums[j]) {
@@ -107,14 +107,14 @@ public class 排序 {
             }
         }
         // 其中一个遍历完之后，直接将另一部分没有遍历完的 添加到 新数组后面即可
-        while (i <= mid) { //右边遍历完事了   左边还剩呢
+        while (i <= mid) { // 右边遍历完事了   左边还剩呢
             temp[k++] = nums[i++];
         }
-        while (j <= end) { //左边遍历完事了   右边还剩了
+        while (j <= end) { // 左边遍历完事了   右边还剩了
             temp[k++] = nums[j++];
         }
         k = 0;
-        i = start; //将temp中的元素  全部都copy到原数组里边去
+        i = start; // 将temp中的元素  全部都copy到原数组里边去
         for (; i <= end; i++, k++) {
             nums[i] = temp[k];
         }
@@ -124,20 +124,20 @@ public class 排序 {
     /**
      * 快速排序    2  1  9    3   5  0
      */
-    public static void quickSort(int[] nums, int start, int end) { //左闭右闭
-        if (start >= end) { //当数组中只有一个元素的时候终止
-            return ;
+    public static void quickSort(int[] nums, int start, int end) { // 左闭右闭
+        if (start >= end) { // 当数组中只有一个元素的时候终止
+            return;
         }
         int pIndex = partition(nums, start, end);
         quickSort(nums, start, pIndex - 1);
-        quickSort(nums, pIndex+1, end);
+        quickSort(nums, pIndex + 1, end);
     }
 
     private static int partition(int[] a, int p, int r) {
         // 选择最后一个数字作为支点
         int pivot = a[r];
         int i = p;
-        for(int j = p; j < r; j++) {
+        for (int j = p; j < r; j++) {
             // 当出现 a[j] > pivot 的时候 ， i  并没有 ++ ， 所以会有 else
             if (a[j] < pivot) {
                 if (i == j) {
