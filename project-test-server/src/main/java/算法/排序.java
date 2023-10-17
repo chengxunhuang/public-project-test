@@ -78,7 +78,7 @@ public class 排序 {
 
 
     /**
-     * 归并排序，将两个排好序的合并到一起   2  1  9    3   5  0
+     * 归并排序，将两个排好序的合并到一起   2  1  9    3   5     0
      */
     public static void mergeSort(int[] value, int m, int n) {
         // 数组中只有一个元素 ，不用再继续分解
