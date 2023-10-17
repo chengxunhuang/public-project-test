@@ -123,6 +123,7 @@ public class 排序 {
 
     /**
      * 快速排序    2  1  9    3   5  0
+     *
      */
     public static void quickSort(int[] nums, int start, int end) { // 左闭右闭
         if (start >= end) { // 当数组中只有一个元素的时候终止
