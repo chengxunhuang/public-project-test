@@ -1,7 +1,9 @@
-package 算法;
+package 算法.链表;
+
+import 算法.链表.ListNode;
+import 算法.链表.SingleLinkedList;
 
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * @author:wuhao

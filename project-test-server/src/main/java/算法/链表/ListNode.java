@@ -1,4 +1,4 @@
-package 算法;
+package 算法.链表;
 
 /**
  * @author:wuhao
